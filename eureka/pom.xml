@@ -11,5 +11,27 @@
 
     <artifactId>eureka</artifactId>
 
+    <properties>
+        <start-class>main.EurekaApplication</start-class>
+    </properties>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>${start-class}</mainClass>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 
 </project>
