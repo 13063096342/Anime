@@ -202,7 +202,7 @@ public class VMInfo {
             method.setAccessible(true);
             return (Long) method.invoke(operatingSystem, (Object[]) null);
         } catch (final Exception e) {
-            LOG.info(String.format("OperatingSystemMXBean %s failed, Exception = %s ", methodName, e.getMessage()));
+            LOG.info(String.format("OperatingSystemMXBean %s failed, exception = %s ", methodName, e.getMessage()));
         }
 
         return -1;

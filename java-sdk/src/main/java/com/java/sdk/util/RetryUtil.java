@@ -104,7 +104,7 @@ public final class RetryUtil {
                 } catch (Exception e) {
                     saveException = e;
                     if (i == 0) {
-                        LOG.error(String.format("Exception when calling callable, 异常Msg:%s", saveException.getMessage()), saveException);
+                        LOG.error(String.format("exception when calling callable, 异常Msg:%s", saveException.getMessage()), saveException);
                     }
 
                     if (null != retryExceptionClasss && !retryExceptionClasss.isEmpty()) {
@@ -143,7 +143,7 @@ public final class RetryUtil {
 
                         long realTimeSleep = System.currentTimeMillis() - startTime;
 
-                        LOG.error(String.format("Exception when calling callable, 即将尝试执行第%s次重试.本次重试计划等待[%s]ms,实际等待[%s]ms, 异常Msg:[%s]",
+                        LOG.error(String.format("exception when calling callable, 即将尝试执行第%s次重试.本次重试计划等待[%s]ms,实际等待[%s]ms, 异常Msg:[%s]",
                                 i + 1, timeToSleep, realTimeSleep, e.getMessage()));
 
                     }

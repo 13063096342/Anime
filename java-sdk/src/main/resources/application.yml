@@ -1,0 +1,17 @@
+dubbo:
+  application:
+    name: mio
+  registry:
+    address: zookeeper://10.1.0.64:2181
+    timeout: 6000
+
+
+example:
+  service:
+    prefix: ======
+    suffix: 111111
+
+    enable: true
+
+server:
+  port: 8888
