@@ -3,6 +3,8 @@ package com.java.sdk.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.UUID;
 
 
@@ -80,4 +82,140 @@ public final class StringUtil extends StringUtils {
         }
         return result.toString();
     }
+
+    public static final String EMPTY = "";
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.length() == 0;
+    }
+
+    public static boolean isContainEmpty(String... args) {
+        if (args == null) {
+            return false;
+        } else {
+            String[] var1 = args;
+            int var2 = args.length;
+
+            for(int var3 = 0; var3 < var2; ++var3) {
+                String arg = var1[var3];
+                if (arg == null || "".equals(arg)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    public static boolean isBlank(String str) {
+        int strLen;
+        if (str != null && (strLen = str.length()) != 0) {
+            for(int i = 0; i < strLen; ++i) {
+                if (!Character.isWhitespace(str.charAt(i))) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return true;
+        }
+    }
+
+    public static String trimToNull(String str) {
+        String ts = trim(str);
+        return isEmpty(ts) ? null : ts;
+    }
+
+    public static String trimToEmpty(String str) {
+        return str == null ? "" : str.trim();
+    }
+
+    public static String trim(String str) {
+        return str == null ? null : str.trim();
+    }
+
+    public static boolean equals(String str1, String str2) {
+        return str1 == null ? str2 == null : str1.equals(str2);
+    }
+
+    public static boolean equalsIgnoreCase(String str1, String str2) {
+        return str1 == null ? str2 == null : str1.equalsIgnoreCase(str2);
+    }
+
+    public static boolean startsWith(String str, String prefix) {
+        return startsWith(str, prefix, false);
+    }
+
+    private static boolean startsWith(String str, String prefix, boolean ignoreCase) {
+        if (str != null && prefix != null) {
+            return prefix.length() > str.length() ? false : str.regionMatches(ignoreCase, 0, prefix, 0, prefix.length());
+        } else {
+            return str == null && prefix == null;
+        }
+    }
+
+    public static boolean startsWithIgnoreCase(String str, String prefix) {
+        return startsWith(str, prefix, true);
+    }
+
+    public static boolean isNumeric(String str) {
+        if (str == null) {
+            return false;
+        } else {
+            int sz = str.length();
+
+            for(int i = 0; i < sz; ++i) {
+                if (!Character.isDigit(str.charAt(i))) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    public static <T> String join(Collection<T> collection, String separator) {
+        return join(collection, separator, new StringUtil.StringFormatter<T>() {
+            @Override
+            public String format(T obj) {
+                return obj.toString();
+            }
+        });
+    }
+
+    public static <T> String join(Collection<T> collection, String separator, StringUtil.StringFormatter<T> formatter) {
+        Iterator<T> iterator = collection.iterator();
+        if (iterator == null) {
+            return null;
+        } else if (!iterator.hasNext()) {
+            return "";
+        } else {
+            T first = iterator.next();
+            if (!iterator.hasNext()) {
+                return first == null ? "" : formatter.format(first);
+            } else {
+                StringBuilder buf = new StringBuilder(256);
+                if (first != null) {
+                    buf.append(formatter.format(first));
+                }
+
+                while(iterator.hasNext()) {
+                    buf.append(separator);
+                    T obj = iterator.next();
+                    if (obj != null) {
+                        buf.append(formatter.format(obj));
+                    }
+                }
+
+                return buf.toString();
+            }
+        }
+    }
+
+    public interface StringFormatter<T> {
+        String format(T var1);
+    }
+
+
 }

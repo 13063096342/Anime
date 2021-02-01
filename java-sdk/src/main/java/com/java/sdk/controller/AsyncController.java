@@ -1,8 +1,10 @@
 package com.java.sdk.controller;
 
-import com.java.sdk.service.AsyncAService;
-import com.java.sdk.service.AsyncBService;
-import com.java.sdk.service.AsyncCService;
+import com.java.sdk.model.Response;
+import com.java.sdk.service.*;
+import com.java.sdk.service.impl.PersonServiceImpl;
+import com.java.sdk.util.ResponseUtil;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +23,15 @@ public class AsyncController {
 
     @Autowired
     private AsyncBService asyncBService;
+
     @Autowired
     private AsyncCService asyncCService;
+
+    @Autowired
+    private AsyncDService asyncDService;
+
+    @Autowired
+    private IPersonService service;
 
     @GetMapping("/async")
     public void doSomething() throws InterruptedException, ExecutionException {
@@ -45,4 +54,10 @@ public class AsyncController {
 
     }
 
+    @GetMapping("/async2")
+    public Response doSomething2() throws InterruptedException, ExecutionException {
+        service.getPerson();
+        return ResponseUtil.ok(System.currentTimeMillis());
+
+    }
 }

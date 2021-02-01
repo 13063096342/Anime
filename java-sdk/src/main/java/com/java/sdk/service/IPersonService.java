@@ -9,4 +9,6 @@ import com.java.sdk.model.Person;
 public interface IPersonService {
 
     Person getPerson();
+
+    void doSomething() throws InterruptedException;
 }

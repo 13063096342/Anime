@@ -1,6 +1,7 @@
 package com.java.sdk.util;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.Map;
  * @date 2020-07-24 09:35
  */
 @Component
-public class SpringUtils implements ApplicationContextAware {
+public class SpringUtils implements ApplicationContextAware, InitializingBean {
     private static ApplicationContext applicationContext;
 
     @Override
@@ -33,5 +34,13 @@ public class SpringUtils implements ApplicationContextAware {
     public static List getBeansOfType(Class clazz) {
         Map map = applicationContext.getBeansOfType(clazz);
         return new ArrayList(map.values());
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        init();
+    }
+
+    private void init() {
     }
 }

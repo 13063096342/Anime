@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,5 +40,19 @@ public class Person {
     }
 
     public Person() {
+    }
+
+    public static void main(String[] args) {
+        List<Object> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+        List<Object> list2 = new ArrayList<>(5);
+        for (int i = 0; i < list.size(); i++) {
+            list2.add(list.get(i));
+        }
+
+        System.out.println(list2.get(3));
     }
 }

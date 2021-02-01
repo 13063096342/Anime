@@ -1,5 +1,10 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 /**
  * @author chenfh
@@ -18,8 +23,22 @@ public class CollectionTest {
 
         Map<@NotNull String, List<Person>> collect = personList.stream().collect(Collectors.groupingBy(Person::getName));
         System.out.println(JSONObject.toJSONString(collect));*/
-        HashMap<String ,Object> hashMap = new HashMap<>();
+        /*HashMap<String ,Object> hashMap = new HashMap<>();
         hashMap.put("list",Arrays.asList(1,2,3));
-        System.out.println(hashMap.get("list"));
+        System.out.println(hashMap.get("list"));*/
+        //线程个数
+          int THREAD_COUNT = 10;
+        //总元素数量
+          int ITEM_COUNT = 10;
+
+        ConcurrentHashMap<String, Long> concurrentHashMap = getData(ITEM_COUNT - 1);
+        System.out.println(concurrentHashMap.toString());
+    }
+
+    public static ConcurrentHashMap<String, Long> getData(int count) {
+        return LongStream.rangeClosed(1, count)
+                .boxed()
+                .collect(Collectors.toConcurrentMap(i -> UUID.randomUUID().toString(), Function.identity(),
+                        (o1, o2) -> o1, ConcurrentHashMap::new));
     }
 }

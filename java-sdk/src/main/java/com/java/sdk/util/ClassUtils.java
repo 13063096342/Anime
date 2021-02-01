@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * 类反射用的工具类
@@ -65,19 +67,19 @@ public class ClassUtils {
         return field == null ? null : getValue(obj, field.getName());
     }
 
-/*    public static List<Field> filterFields(Class objClass, Class filter) {
+   public static List<Field> filterFields(Class objClass, Class filter) {
         return filterFields(objClass, field -> filter.equals(field.getType()));
-    }*/
+    }
 
-/*    public static List<Field> filterFields(Class targetClass, Predicate<Field> predicate) {
-        return CollectionUtils.filter(getAllFields(targetClass), predicate);
-    }*/
+    public static List<Field> filterFields(Class targetClass, Predicate<Field> predicate) {
+        return CollectionUtil.filter(getAllFields(targetClass), predicate);
+    }
 
-//    public static void tranMatchField(Object object, Function func, Class filter) {
-//        List<Field> fields = ClassUtils.filterFields(object.getClass(), filter);
-//        fields.forEach(field -> {
-//            field.setAccessible(true);
-//            ClassUtils.fillFieldValue(object, field, func.apply(ClassUtils.getFieldValue(field, object)));
-//        });
-//    }
+    public static void tranMatchField(Object object, Function func, Class filter) {
+        List<Field> fields = ClassUtils.filterFields(object.getClass(), filter);
+        fields.forEach(field -> {
+            field.setAccessible(true);
+            ClassUtils.fillFieldValue(object, field, func.apply(ClassUtils.getFieldValue(field, object)));
+        });
+    }
 }

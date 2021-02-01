@@ -1,8 +1,12 @@
 package com.java.sdk.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.java.sdk.model.Person;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -18,5 +22,14 @@ public class AsyncAService {
         Thread.sleep(3000);
         System.out.println("A线程执行结束------");
         return CompletableFuture.completedFuture("A线程执行结束");
+    }
+
+    public static void main(String[] args) {
+        List<Person> list = new ArrayList<>();
+        Person person1 = new Person("a",1);
+        Person person2 = new Person("b",2);
+        list.add(person1);
+        list.add(person2);
+        System.out.println(JSONObject.toJSONString(list));
     }
 }

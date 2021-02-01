@@ -66,7 +66,7 @@ public class DefaultReentrantStripedLock implements StripedLock {
     public boolean isHeldByCurrentThread(String key) {
         ReentrantLock lock = lockMap.get(key);
         boolean flag = lock != null && lock.isHeldByCurrentThread();
-        log.debug("is held by current thread,flag:{}, key:{}", flag, key);
+        log.debug("is held by concurrent thread,flag:{}, key:{}", flag, key);
         return flag;
     }
 }
