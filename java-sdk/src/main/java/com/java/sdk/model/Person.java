@@ -35,11 +35,13 @@ public class Person {
     private HashMap<String, String> bizArgs;
 
     public Person(String name, Integer age) {
+        System.out.println("反射构造2");
         this.name = name;
         this.age = age;
     }
 
     public Person() {
+        System.out.println("反射构造");
     }
 
     public static void main(String[] args) {

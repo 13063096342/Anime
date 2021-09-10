@@ -5,5 +5,8 @@
     <file url="file://$PROJECT_DIR$/cloud" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java-sdk" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc-order-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rpc-user-service" charset="UTF-8" />
   </component>
 </project>

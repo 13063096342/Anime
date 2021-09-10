@@ -8,8 +8,10 @@ import com.java.sdk.model.ImportModel;
 import com.java.sdk.model.JsonTestModel;
 import com.java.sdk.model.Person;
 import com.java.sdk.model.Response;
+import com.java.sdk.service.event.UserService;
 import com.java.sdk.util.ExcelUtils;
 import com.java.sdk.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,9 @@ import java.util.List;
  */
 @RestController
 public class ExcelController {
+    @Autowired
+    private UserService service;
+
     @GetMapping("export/excel")
     public void exportExcel(HttpServletResponse response) throws IOException {
         List<Person> personList = new ArrayList<>();

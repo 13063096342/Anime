@@ -87,4 +87,9 @@ public class ThreadPoolUtils {
                                                             TimeUnit unit) {
         return SCHEDULED_POOL.scheduleWithFixedDelay(command, initialDelay, delay, unit);
     }
+
+    public static void main(String[] args) {
+        ThreadPoolExecutor pool = ThreadPoolUtils.POOL;
+
+    }
 }

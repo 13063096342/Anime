@@ -2,8 +2,10 @@ package com.java.sdk.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.java.sdk.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,11 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class AsyncAService {
 
-    @Async("taskExecutor")
+    @Autowired
+    AsyncDService asyncDService;
+
+    //@Async("taskExecutor")
+    @Transactional
     public CompletableFuture<String> doSomething() throws InterruptedException {
         System.out.println("A线程开始执行------");
         Thread.sleep(3000);

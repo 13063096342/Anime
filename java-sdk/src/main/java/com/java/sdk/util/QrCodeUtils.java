@@ -251,7 +251,7 @@ public class QrCodeUtils {
      * 解析二维码  
      *
      * @param path
-     *            二维码图片地址  
+     *            二维码图片地址
      * @return
      * @throws Exception
      */

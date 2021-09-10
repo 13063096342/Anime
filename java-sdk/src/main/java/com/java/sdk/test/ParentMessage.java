@@ -4,6 +4,7 @@ import com.java.sdk.model.Person;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,6 +26,14 @@ public abstract class ParentMessage implements IMessage {
     }
 
     public static void main(String[] args) {
+        Person person1 = new Person();
+        person1.setAge(2);
+        person1.setName("inorly");
+        HashMap<String,Object> cache1 = new HashMap<>();
+        cache1.put("a",person1);
+
+        Object a = cache1.get("a");
+
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");

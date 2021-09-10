@@ -87,7 +87,7 @@ public class AESOperator {
         AESOperator aesOperator = new AESOperator();
         aesOperator.setsKey("1234567890abcdef");
         aesOperator.setIvParameter("fedcba0987654321");
-        String cSrc = "";
+        String cSrc = "1234995";
         System.out.println(cSrc + " 长度为" + cSrc.length());
         long lStart = System.currentTimeMillis();
         String enString = aesOperator.encrypt(cSrc);
